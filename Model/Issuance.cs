@@ -1,12 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ozon.Model
 {
-    class Issuance
+    public class Issuance
     {
+        [Key]
+        public int IssuanceId { get; set; }
+
+        [Required]
+        public DateTime IssuanceDate { get; set; }
+
+        [Required]
+        public int IssuanceRating { get; set; }
+
+        [ForeignKey("OrderId")]
+        public int OrderId { get; set; }
+        public Order? Order { get; set; }
+
+        [ForeignKey("EmployeeId")]
+        public int EmployeeId { get; set; }
+        public Employee? Employee { get; set; }
     }
 }

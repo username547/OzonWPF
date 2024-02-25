@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ozon.Model
 {
-    class CartItem
+    public class CartItem
     {
+        [Key]
+        public int CartItemId { get; set; }
+
+        [Required]
+        public int CartItemQuantity { get; set; }
+
+        [ForeignKey("CartId")]
+        public int CartId { get; set; }
+        public Cart? Cart { get; set; }
+
+        [ForeignKey("ProductId")]
+        public int ProductId { get; set; }
+        public Product? Product { get; set; }
     }
 }

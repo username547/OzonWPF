@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ozon.Model
 {
@@ -27,11 +22,14 @@ namespace Ozon.Model
         public string UserEmail { get; set; } = string.Empty;
 
         [Required]
-        public string UserPasswordHash { get; set; } = string.Empty;
+        [StringLength(50)]
+        public string UserPassword { get; set; } = string.Empty;
 
-        [ForeignKey("RoleId")]
-        public int? RoleId { get; set; }
+        [ForeignKey("Role")]
+        public int RoleId { get; set; }
         public Role? Role { get; set; }
 
+        public ICollection<Order>? Orders { get; set; }
+        public Cart? Cart { get; set; }
     }
 }

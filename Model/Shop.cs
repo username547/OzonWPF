@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ozon.Model
 {
-    class Shop
+    public class Shop
     {
+        [Key]
+        public int ShopId { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string ShopName = string.Empty;
+
+        [Required]
+        [StringLength(100)]
+        public string ShopDescription = string.Empty;
+
+        [ForeignKey("SellerId")]
+        public int SellerId { get; set; }
+        public Seller? Seller { get; set; }
     }
 }
