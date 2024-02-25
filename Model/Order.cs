@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ozon.Model
 {
@@ -28,5 +23,6 @@ namespace Ozon.Model
         public Status? Status { get; set; }
 
         public ICollection<OrderItem>? OrderItems { get; set; }
+        public Issuance? Issuance { get; set; }
     }
 }

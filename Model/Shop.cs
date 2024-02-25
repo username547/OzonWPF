@@ -10,11 +10,11 @@ namespace Ozon.Model
 
         [Required]
         [StringLength(50)]
-        public string ShopName = string.Empty;
+        public string ShopName { get; set; } = string.Empty;
 
         [Required]
         [StringLength(100)]
-        public string ShopDescription = string.Empty;
+        public string ShopDescription { get; set; } = string.Empty;
 
         [ForeignKey("SellerId")]
         public int SellerId { get; set; }

@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.SqlTypes;
 
 namespace Ozon.Model
 {
@@ -15,7 +14,7 @@ namespace Ozon.Model
 
         [Required]
         [StringLength(100)]
-        public string ProductDescription = string.Empty;
+        public string ProductDescription { get; set; } = string.Empty;
 
         [Required]
         public int ProductPrice { get; set; }

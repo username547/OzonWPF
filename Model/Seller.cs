@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Ozon.Model
 {
@@ -17,11 +16,11 @@ namespace Ozon.Model
 
         [Required]
         [StringLength(12)]
-        public string SellerINN = string.Empty;
+        public string SellerINN { get; set; } = string.Empty;
 
         [Required]
         [StringLength(10)]
-        public string SellerPhone = string.Empty;
+        public string SellerPhone { get; set; } = string.Empty;
 
         [Required]
         public int SellerRating { get; set; }
