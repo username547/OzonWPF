@@ -14,33 +14,86 @@
         <TabControl Grid.Row="0">
             <TabItem Name="UsersTabs">
                 <TabItem.Header>
-                    <TextBlock Text="Пользователи"/>
+                    <TextBlock Text="Users"/>
                 </TabItem.Header>
                 <ListView>
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Имя"/>
-                            <GridViewColumn Header="Фамилия"/>
+                            <GridViewColumn Header="ID"/>
+                            <GridViewColumn Header="Name"/>
+                            <GridViewColumn Header="Surname"/>
                             <GridViewColumn Header="Email"/>
-                            <GridViewColumn Header="Пароль"/>
+                            <GridViewColumn Header="Password"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </TabItem>
             <TabItem Name="SellersTabs">
                 <TabItem.Header>
-                    <TextBlock Text="Продавцы"/>
+                    <TextBlock Text="Sellers"/>
                 </TabItem.Header>
+                <ListView>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID"/>
+                            <GridViewColumn Header="Name"/>
+                            <GridViewColumn Header="Surname"/>
+                            <GridViewColumn Header="Email"/>
+                            <GridViewColumn Header="Password"/>
+                            <GridViewColumn Header="Passport"/>
+                            <GridViewColumn Header="INN"/>
+                            <GridViewColumn Header="Phone"/>
+                            <GridViewColumn Header="Rating"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Name="ShopsTabs">
+                <TabItem.Header>
+                    <TextBlock Text="Shops"/>
+                </TabItem.Header>
+                <ListView>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID"/>
+                            <GridViewColumn Header="Name"/>
+                            <GridViewColumn Header="Rating"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </TabItem>
             <TabItem Name="EmployeesTabs">
                 <TabItem.Header>
-                    <TextBlock Text="Сотрудники"/>
+                    <TextBlock Text="Employees"/>
                 </TabItem.Header>
+                <ListView>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID"/>
+                            <GridViewColumn Header="Name"/>
+                            <GridViewColumn Header="Surname"/>
+                            <GridViewColumn Header="Email"/>
+                            <GridViewColumn Header="Password"/>
+                            <GridViewColumn Header="Passport"/>
+                            <GridViewColumn Header="Phone"/>
+                            <GridViewColumn Header="Salary"/>
+                            <GridViewColumn Header="Address"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </TabItem>
-            <TabItem Name="PVZTabs">
+            <TabItem Name="PickupPointsTabs">
                 <TabItem.Header>
-                    <TextBlock Text="ПВЗ"/>
+                    <TextBlock Text="PickupPoints"/>
                 </TabItem.Header>
+                <ListView>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID"/>
+                            <GridViewColumn Header="Address"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </TabItem>
         </TabControl>
     </Grid>

@@ -13,7 +13,7 @@ namespace Ozon.Model
 
         [Required]
         [StringLength(10)]
-        public string EmployeePasport { get; set; } = string.Empty;
+        public string EmployeePassport { get; set; } = string.Empty;
 
         [Required]
         [StringLength(10)]

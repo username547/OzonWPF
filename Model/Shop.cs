@@ -13,6 +13,9 @@ namespace Ozon.Model
         public string ShopName { get; set; } = string.Empty;
 
         [Required]
+        public int ShopRating { get; set; }
+
+        [Required]
         [StringLength(100)]
         public string ShopDescription { get; set; } = string.Empty;
 

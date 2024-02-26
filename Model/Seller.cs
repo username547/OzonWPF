@@ -12,7 +12,7 @@ namespace Ozon.Model
 
         [Required]
         [StringLength(10)]
-        public string SellerPasport { get; set; } = string.Empty;
+        public string SellerPassport { get; set; } = string.Empty;
 
         [Required]
         [StringLength(12)]
@@ -21,8 +21,5 @@ namespace Ozon.Model
         [Required]
         [StringLength(10)]
         public string SellerPhone { get; set; } = string.Empty;
-
-        [Required]
-        public int SellerRating { get; set; }
     }
 }
