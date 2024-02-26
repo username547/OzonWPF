@@ -12,7 +12,7 @@ using Ozon.Model.Data;
 namespace Ozon.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240225145805_Initial")]
+    [Migration("20240226064026_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -146,6 +146,9 @@ namespace Ozon.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("OrderPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PickupPointId")
                         .HasColumnType("int");
 
                     b.Property<int>("StatusId")

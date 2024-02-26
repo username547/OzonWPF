@@ -145,6 +145,9 @@ namespace Ozon.Migrations
                     b.Property<int>("OrderPrice")
                         .HasColumnType("int");
 
+                    b.Property<int>("PickupPointId")
+                        .HasColumnType("int");
+
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
 

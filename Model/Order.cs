@@ -14,6 +14,9 @@ namespace Ozon.Model
         [Required]
         public DateTime OrderDate { get; set; }
 
+        [Required]
+        public int PickupPointId { get; set; }
+
         [ForeignKey("UserId")]
         public int UserId { get; set; }
         public User? User { get; set; }
