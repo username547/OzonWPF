@@ -12,7 +12,7 @@ using Ozon.Model.Data;
 namespace Ozon.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240226064026_Initial")]
+    [Migration("20240226072126_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -143,6 +143,9 @@ namespace Ozon.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
                     b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("OrderExpDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("OrderPrice")

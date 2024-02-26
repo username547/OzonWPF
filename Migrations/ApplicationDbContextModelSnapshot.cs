@@ -142,6 +142,9 @@ namespace Ozon.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("OrderExpDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("OrderPrice")
                         .HasColumnType("int");
 
