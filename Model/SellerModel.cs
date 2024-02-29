@@ -2,7 +2,7 @@
 
 namespace Ozon.Model
 {
-    public class Seller
+    public class SellerModel
     {
         [Key]
         public int SellerId { get; set; }

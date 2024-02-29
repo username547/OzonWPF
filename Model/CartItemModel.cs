@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ozon.Model
 {
-    public class CartItem
+    public class CartItemModel
     {
         [Key]
         public int CartItemId { get; set; }
@@ -13,10 +13,10 @@ namespace Ozon.Model
 
         [ForeignKey("CartId")]
         public int CartId { get; set; }
-        public Cart? Cart { get; set; }
+        public CartModel? Cart { get; set; }
 
         [ForeignKey("ProductId")]
         public int ProductId { get; set; }
-        public Product? Product { get; set; }
+        public ProductModel? Product { get; set; }
     }
 }

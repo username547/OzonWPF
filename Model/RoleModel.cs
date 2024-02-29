@@ -2,7 +2,7 @@
 
 namespace Ozon.Model
 {
-    public class Role
+    public class RoleModel
     {
         [Key]
         public int RoleId { get; set; }
@@ -11,6 +11,6 @@ namespace Ozon.Model
         [StringLength(50)]
         public string RoleName { get; set; } = string.Empty;
 
-        public ICollection<User>? Users { get; set; }
+        public ICollection<UserModel>? Users { get; set; }
     }
 }

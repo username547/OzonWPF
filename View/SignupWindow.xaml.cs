@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ozon.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace Ozon.View
         public SignupWindow()
         {
             InitializeComponent();
+            DataContext = new SignupViewModel();
         }
     }
 }

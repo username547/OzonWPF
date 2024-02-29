@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ozon.Model
 {
-    public class Product
+    public class ProductModel
     {
         [Key]
         public int ProductId { get; set; }
@@ -27,9 +27,9 @@ namespace Ozon.Model
 
         [ForeignKey("ShopId")]
         public int ShopId { get; set; }
-        public Shop? Shop { get; set; }
+        public ShopModel? Shop { get; set; }
 
-        public ICollection<CartItem>? CartItems { get; set; }
-        public ICollection<OrderItem>? OrderItems { get; set; }
+        public ICollection<CartItemModel>? CartItems { get; set; }
+        public ICollection<OrderItemModel>? OrderItems { get; set; }
     }
 }

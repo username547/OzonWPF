@@ -1,9 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Ozon.Model
 {
-    public class User
+    public class UserModel
     {
         [Key]
         public int UserId { get; set; }
@@ -27,9 +32,9 @@ namespace Ozon.Model
 
         [ForeignKey("Role")]
         public int RoleId { get; set; }
-        public Role? Role { get; set; }
+        public RoleModel? Role { get; set; }
 
-        public ICollection<Order>? Orders { get; set; }
-        public Cart? Cart { get; set; }
+        public ICollection<OrderModel>? Orders { get; set; }
+        public CartModel? Cart { get; set; }
     }
 }

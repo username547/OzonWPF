@@ -2,7 +2,7 @@
 
 namespace Ozon.Model
 {
-    public class PickupPoint
+    public class PickupPointModel
     {
         [Key]
         public int PickupPointId { get; set; }
@@ -18,6 +18,6 @@ namespace Ozon.Model
         [Required]
         public int PickupPointRating { get; set; }
 
-        public ICollection<Employee>? Employees { get; set; }
+        public ICollection<EmployeeModel>? Employees { get; set; }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ozon.Model
 {
-    public class Issuance
+    public class IssuanceModel
     {
         [Key]
         public int IssuanceId { get; set; }
@@ -16,10 +16,10 @@ namespace Ozon.Model
 
         [ForeignKey("OrderId")]
         public int OrderId { get; set; }
-        public Order? Order { get; set; }
+        public OrderModel? Order { get; set; }
 
         [ForeignKey("EmployeeId")]
         public int EmployeeId { get; set; }
-        public Employee? Employee { get; set; }
+        public EmployeeModel? Employee { get; set; }
     }
 }

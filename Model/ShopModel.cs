@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ozon.Model
 {
-    public class Shop
+    public class ShopModel
     {
         [Key]
         public int ShopId { get; set; }
@@ -13,14 +13,14 @@ namespace Ozon.Model
         public string ShopName { get; set; } = string.Empty;
 
         [Required]
-        public int ShopRating { get; set; }
-
-        [Required]
         [StringLength(100)]
         public string ShopDescription { get; set; } = string.Empty;
 
+        [Required]
+        public int ShopRating { get; set; }
+
         [ForeignKey("SellerId")]
         public int SellerId { get; set; }
-        public Seller? Seller { get; set; }
+        public SellerModel? Seller { get; set; }
     }
 }
