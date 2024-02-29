@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Ozon.View"
+        xmlns:local="clr-namespace:Ozon.ViewModel"
         mc:Ignorable="d"
         Title="SignupWindow" Height="400" Width="300">
+    <Window.DataContext>
+        <local:SignupViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -20,28 +23,28 @@
         <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
             <StackPanel Margin="0,0,0,5">
                 <Label Content="Name:"/>
-                <TextBox x:Name="txtName" Width="200"/>
+                <TextBox x:Name="txtName" Width="200" Text="{Binding UserName, Mode=TwoWay}"/>
             </StackPanel>
             <StackPanel Margin="0,0,0,5">
                 <Label Content="Surname:"/>
-                <TextBox x:Name="txtSurname" Width="200"/>
+                <TextBox x:Name="txtSurname" Width="200" Text="{Binding UserSurname, Mode=TwoWay}"/>
             </StackPanel>
             <StackPanel Margin="0,0,0,5">
                 <Label Content="Email:"/>
-                <TextBox x:Name="txtEmail" Width="200"/>
+                <TextBox x:Name="txtEmail" Width="200" Text="{Binding UserEmail, Mode=TwoWay}"/>
             </StackPanel>
             <StackPanel Margin="0,0,0,5">
                 <Label Content="Password:"/>
-                <PasswordBox x:Name="txtPassword" Width="200"/>
+                <TextBox x:Name="txtPassword" Width="200" Text="{Binding UserPassword, Mode=TwoWay}"/>
             </StackPanel>
             <StackPanel Margin="0,0,0,5">
                 <Label Content="Confirm Password:"/>
-                <PasswordBox x:Name="txtConfirmPassword" Width="200"/>
+                <TextBox x:Name="txtConfirmPassword" Width="200" Text="{Binding UserPasswordConfirm, Mode=TwoWay}"/>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Signup" Width="100" Height="28"/>
+            <Button Content="Signup" Width="100" Height="28" Command="{Binding SignupCommand}"/>
             <Button Content="Cancel" Width="100" Height="28" Margin="20,0,0,0"/>
         </StackPanel>
     </Grid>

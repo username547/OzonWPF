@@ -12,6 +12,6 @@ namespace Ozon.Model
         public int UserId { get; set; }
         public UserModel? User { get; set; }
 
-        public ICollection<CartItem>? CartItems { get; set; }
+        public ICollection<CartItemModel>? CartItems { get; set; }
     }
 }

@@ -24,6 +24,6 @@ namespace Ozon.Model
 
         [ForeignKey("PickupPointId")]
         public int PickupPointId { get; set; }
-        public PickupPoint? PickupPoint { get; set; }
+        public PickupPointModel? PickupPoint { get; set; }
     }
 }

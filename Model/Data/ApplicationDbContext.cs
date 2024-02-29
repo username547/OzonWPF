@@ -6,17 +6,17 @@ namespace Ozon.Model.Data
     {
         public DbSet<UserModel> Users {  get; set; }
         public DbSet<SellerModel> Sellers { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<EmployeeModel> Employees { get; set; }
+        public DbSet<ProductModel> Products { get; set; }
         public DbSet<ShopModel> Shops { get; set; }
-        public DbSet<PickupPoint> PickPoints { get; set; }
+        public DbSet<PickupPointModel> PickPoints { get; set; }
         public DbSet<RoleModel> Roles { get; set; }
-        public DbSet<Cart> Carts { get; set; }
-        public DbSet<CartItem> CartItems { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<Status> Status { get; set; }
-        public DbSet<Issuance> Issuances { get; set; }
+        public DbSet<CartModel> Carts { get; set; }
+        public DbSet<CartItemModel> CartItems { get; set; }
+        public DbSet<OrderModel> Orders { get; set; }
+        public DbSet<OrderItemModel> OrderItems { get; set; }
+        public DbSet<StatusModel> Status { get; set; }
+        public DbSet<IssuanceModel> Issuances { get; set; }
 
         public ApplicationDbContext()
         {

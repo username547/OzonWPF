@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
-using Ozon.Model;
+using Ozon.Model.Data;
+using Ozon.Model.DTO;
 using System.Windows;
 using System.Windows.Input;
 
@@ -7,53 +8,82 @@ namespace Ozon.ViewModel
 {
     public class SignupViewModel : ViewModelBase
     {
-        private UserModel newUser;
-        public ICommand LoginCommand { get; }
+        private SignupModel dto;
+        public ICommand SignupCommand { get; }
 
         public SignupViewModel()
         {
-            newUser = new UserModel();
-            LoginCommand = new RelayCommand((param) => LoggedIn(param));
+            dto = new SignupModel();
+            SignupCommand = new RelayCommand(param => Signup());
         }
 
         public string UserName
         {
-            get => newUser.UserName;
+            get => dto.UserName;
             set
             {
-                newUser.UserName = value;
-                OnPropertyChanged(nameof(UserName));
+                dto.UserName = value;
+                OnPropertyChanged(nameof(dto.UserName));
             }
         }
 
         public string UserSurname
         {
-            get => newUser.UserSurname;
+            get => dto.UserSurname;
             set
             {
-                newUser.UserSurname = value;
-                OnPropertyChanged(nameof(UserSurname));
+                dto.UserSurname = value;
+                OnPropertyChanged(nameof(dto.UserSurname));
             }
         }
 
         public string UserEmail
         {
-            get => newUser.UserEmail;
+            get => dto.UserEmail;
             set
             {
-                newUser.UserEmail = value;
-                OnPropertyChanged(nameof(UserEmail));
+                dto.UserEmail = value;
+                OnPropertyChanged(nameof(dto.UserEmail));
             }
         }
 
         public string UserPassword
         {
-            get => newUser.UserPassword;
+            get => dto.UserPassword;
             set
             {
-                newUser.UserPassword = value;
-                OnPropertyChanged(nameof(UserPassword));
+                dto.UserPassword = value;
+                OnPropertyChanged(nameof(dto.UserPassword));
             }
+        }
+
+        public string UserPasswordConfirm
+        {
+            get => dto.UserPassword;
+            set
+            {
+                dto.UserPassword = value;
+                OnPropertyChanged(nameof(dto.UserPassword));
+            }
+        }   
+
+        public void Signup()
+        {
+            if (!UserDataManager.CreateUser(dto.UserName, dto.UserSurname, dto.UserEmail, dto.UserPassword)) MessageBox.Show("Good");
+            else MessageBox.Show("Bad");
+        }
+
+        public bool CanSignup()
+        {
+            if (string.IsNullOrEmpty(dto.UserName) ||
+                string.IsNullOrEmpty(dto.UserSurname) ||
+                string.IsNullOrEmpty(dto.UserEmail) ||
+                string.IsNullOrEmpty(dto.UserPassword) ||
+                string.IsNullOrEmpty(dto.UserPasswordConfirm)) return false;
+
+            if (!string.Equals(dto.UserPassword, dto.UserPasswordConfirm)) return false;
+
+            return true;
         }
 
         private void LoggedIn(object parameter)

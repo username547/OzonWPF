@@ -25,8 +25,8 @@ namespace Ozon.Model.Data
                 UserName = userName,
                 UserSurname = userSurname,
                 UserEmail = userEmail,
-                UserPassword = BCrypt.Net.BCrypt.HashPassword(userPassword),
-                UserId = 4
+                UserPassword = userPassword,
+                RoleId = 4
             };
 
             context.Add(newUser);
@@ -35,7 +35,7 @@ namespace Ozon.Model.Data
             return true;
         }
 
-        public static bool UpdateUser(User user, string userName, string userSurname, string userEmail, string userPassword)
+        public static bool UpdateUser(UserModel user, string userName, string userSurname, string userEmail, string userPassword)
         {
             using ApplicationDbContext context = new();
             var tempUser = context.Users.FirstOrDefault(x => x.UserEmail == user.UserEmail);

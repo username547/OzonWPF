@@ -23,7 +23,6 @@ namespace Ozon.View
         public SignupWindow()
         {
             InitializeComponent();
-            DataContext = new SignupViewModel();
         }
     }
 }
