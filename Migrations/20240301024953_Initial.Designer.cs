@@ -5,14 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Ozon.Model.Data;
+using Ozon.Data;
+
 
 #nullable disable
 
 namespace Ozon.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240226104930_Initial")]
+    [Migration("20240301024953_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -25,26 +26,7 @@ namespace Ozon.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Ozon.Model.Cart", b =>
-                {
-                    b.Property<int>("CartId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"));
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CartId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("Ozon.Model.CartItem", b =>
+            modelBuilder.Entity("Ozon.Model.CartItemModel", b =>
                 {
                     b.Property<int>("CartItemId")
                         .ValueGeneratedOnAdd()
@@ -70,7 +52,26 @@ namespace Ozon.Migrations
                     b.ToTable("CartItems");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Employee", b =>
+            modelBuilder.Entity("Ozon.Model.CartModel", b =>
+                {
+                    b.Property<int>("CartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"));
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("Ozon.Model.EmployeeModel", b =>
                 {
                     b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
@@ -104,7 +105,7 @@ namespace Ozon.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Issuance", b =>
+            modelBuilder.Entity("Ozon.Model.IssuanceModel", b =>
                 {
                     b.Property<int>("IssuanceId")
                         .ValueGeneratedOnAdd()
@@ -134,7 +135,36 @@ namespace Ozon.Migrations
                     b.ToTable("Issuances");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Order", b =>
+            modelBuilder.Entity("Ozon.Model.OrderItemModel", b =>
+                {
+                    b.Property<int>("OrderItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderItemQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderItemRating")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderItemId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("Ozon.Model.OrderModel", b =>
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -169,36 +199,7 @@ namespace Ozon.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Ozon.Model.OrderItem", b =>
-                {
-                    b.Property<int>("OrderItemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderItemQuantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderItemRating")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderItemId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderItems");
-                });
-
-            modelBuilder.Entity("Ozon.Model.PickupPoint", b =>
+            modelBuilder.Entity("Ozon.Model.PickupPointModel", b =>
                 {
                     b.Property<int>("PickupPointId")
                         .ValueGeneratedOnAdd()
@@ -224,7 +225,7 @@ namespace Ozon.Migrations
                     b.ToTable("PickPoints");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Product", b =>
+            modelBuilder.Entity("Ozon.Model.ProductModel", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -261,7 +262,7 @@ namespace Ozon.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Role", b =>
+            modelBuilder.Entity("Ozon.Model.RoleModel", b =>
                 {
                     b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
@@ -279,7 +280,7 @@ namespace Ozon.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Seller", b =>
+            modelBuilder.Entity("Ozon.Model.SellerModel", b =>
                 {
                     b.Property<int>("SellerId")
                         .ValueGeneratedOnAdd()
@@ -310,7 +311,7 @@ namespace Ozon.Migrations
                     b.ToTable("Sellers");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Shop", b =>
+            modelBuilder.Entity("Ozon.Model.ShopModel", b =>
                 {
                     b.Property<int>("ShopId")
                         .ValueGeneratedOnAdd()
@@ -341,7 +342,7 @@ namespace Ozon.Migrations
                     b.ToTable("Shops");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Status", b =>
+            modelBuilder.Entity("Ozon.Model.StatusModel", b =>
                 {
                     b.Property<int>("StatusId")
                         .ValueGeneratedOnAdd()
@@ -359,7 +360,7 @@ namespace Ozon.Migrations
                     b.ToTable("Status");
                 });
 
-            modelBuilder.Entity("Ozon.Model.User", b =>
+            modelBuilder.Entity("Ozon.Model.UserModel", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -397,26 +398,15 @@ namespace Ozon.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Cart", b =>
+            modelBuilder.Entity("Ozon.Model.CartItemModel", b =>
                 {
-                    b.HasOne("Ozon.Model.User", "User")
-                        .WithOne("Cart")
-                        .HasForeignKey("Ozon.Model.Cart", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Ozon.Model.CartItem", b =>
-                {
-                    b.HasOne("Ozon.Model.Cart", "Cart")
+                    b.HasOne("Ozon.Model.CartModel", "Cart")
                         .WithMany("CartItems")
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Ozon.Model.Product", "Product")
+                    b.HasOne("Ozon.Model.ProductModel", "Product")
                         .WithMany("CartItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -427,9 +417,20 @@ namespace Ozon.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Employee", b =>
+            modelBuilder.Entity("Ozon.Model.CartModel", b =>
                 {
-                    b.HasOne("Ozon.Model.PickupPoint", "PickupPoint")
+                    b.HasOne("Ozon.Model.UserModel", "User")
+                        .WithOne("Cart")
+                        .HasForeignKey("Ozon.Model.CartModel", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Ozon.Model.EmployeeModel", b =>
+                {
+                    b.HasOne("Ozon.Model.PickupPointModel", "PickupPoint")
                         .WithMany("Employees")
                         .HasForeignKey("PickupPointId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -438,17 +439,17 @@ namespace Ozon.Migrations
                     b.Navigation("PickupPoint");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Issuance", b =>
+            modelBuilder.Entity("Ozon.Model.IssuanceModel", b =>
                 {
-                    b.HasOne("Ozon.Model.Employee", "Employee")
+                    b.HasOne("Ozon.Model.EmployeeModel", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Ozon.Model.Order", "Order")
+                    b.HasOne("Ozon.Model.OrderModel", "Order")
                         .WithOne("Issuance")
-                        .HasForeignKey("Ozon.Model.Issuance", "OrderId")
+                        .HasForeignKey("Ozon.Model.IssuanceModel", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -457,34 +458,15 @@ namespace Ozon.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Order", b =>
+            modelBuilder.Entity("Ozon.Model.OrderItemModel", b =>
                 {
-                    b.HasOne("Ozon.Model.Status", "Status")
-                        .WithMany("Orders")
-                        .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Ozon.Model.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Status");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Ozon.Model.OrderItem", b =>
-                {
-                    b.HasOne("Ozon.Model.Order", "Order")
+                    b.HasOne("Ozon.Model.OrderModel", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Ozon.Model.Product", "Product")
+                    b.HasOne("Ozon.Model.ProductModel", "Product")
                         .WithMany("OrderItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -495,9 +477,28 @@ namespace Ozon.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Product", b =>
+            modelBuilder.Entity("Ozon.Model.OrderModel", b =>
                 {
-                    b.HasOne("Ozon.Model.Shop", "Shop")
+                    b.HasOne("Ozon.Model.StatusModel", "Status")
+                        .WithMany("Orders")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ozon.Model.UserModel", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Status");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Ozon.Model.ProductModel", b =>
+                {
+                    b.HasOne("Ozon.Model.ShopModel", "Shop")
                         .WithMany()
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -506,9 +507,9 @@ namespace Ozon.Migrations
                     b.Navigation("Shop");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Shop", b =>
+            modelBuilder.Entity("Ozon.Model.ShopModel", b =>
                 {
-                    b.HasOne("Ozon.Model.Seller", "Seller")
+                    b.HasOne("Ozon.Model.SellerModel", "Seller")
                         .WithMany()
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -517,9 +518,9 @@ namespace Ozon.Migrations
                     b.Navigation("Seller");
                 });
 
-            modelBuilder.Entity("Ozon.Model.User", b =>
+            modelBuilder.Entity("Ozon.Model.UserModel", b =>
                 {
-                    b.HasOne("Ozon.Model.Role", "Role")
+                    b.HasOne("Ozon.Model.RoleModel", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -528,41 +529,41 @@ namespace Ozon.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Cart", b =>
+            modelBuilder.Entity("Ozon.Model.CartModel", b =>
                 {
                     b.Navigation("CartItems");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Order", b =>
+            modelBuilder.Entity("Ozon.Model.OrderModel", b =>
                 {
                     b.Navigation("Issuance");
 
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("Ozon.Model.PickupPoint", b =>
+            modelBuilder.Entity("Ozon.Model.PickupPointModel", b =>
                 {
                     b.Navigation("Employees");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Product", b =>
+            modelBuilder.Entity("Ozon.Model.ProductModel", b =>
                 {
                     b.Navigation("CartItems");
 
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Role", b =>
+            modelBuilder.Entity("Ozon.Model.RoleModel", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Ozon.Model.Status", b =>
+            modelBuilder.Entity("Ozon.Model.StatusModel", b =>
                 {
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("Ozon.Model.User", b =>
+            modelBuilder.Entity("Ozon.Model.UserModel", b =>
                 {
                     b.Navigation("Cart");
 

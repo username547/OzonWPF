@@ -1,14 +1,11 @@
-﻿<Window x:Class="Ozon.View.SignupWindow"
+﻿<Window x:Class="Ozon.Views.SignupWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Ozon.ViewModel"
+        xmlns:local="clr-namespace:Ozon.Views"
         mc:Ignorable="d"
         Title="SignupWindow" Height="400" Width="300">
-    <Window.DataContext>
-        <local:SignupViewModel/>
-    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>

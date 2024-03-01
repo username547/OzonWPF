@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Ozon.Model;
 
-namespace Ozon.Model.Data
+namespace Ozon.Data
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public DbSet<UserModel> Users {  get; set; }
+        public DbSet<UserModel> Users { get; set; }
         public DbSet<SellerModel> Sellers { get; set; }
         public DbSet<EmployeeModel> Employees { get; set; }
         public DbSet<ProductModel> Products { get; set; }

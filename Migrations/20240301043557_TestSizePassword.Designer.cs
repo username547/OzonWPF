@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Ozon.Model.Data;
+using Ozon.Data;
 
 #nullable disable
 
 namespace Ozon.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240229161443_updateModels")]
-    partial class updateModels
+    [Migration("20240301043557_TestSizePassword")]
+    partial class TestSizePassword
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -382,8 +382,7 @@ namespace Ozon.Migrations
 
                     b.Property<string>("UserPassword")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserSurname")
                         .IsRequired()

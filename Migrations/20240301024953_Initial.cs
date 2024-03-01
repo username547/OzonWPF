@@ -162,9 +162,9 @@ namespace Ozon.Migrations
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderPrice = table.Column<int>(type: "int", nullable: false),
+                    PickupPointId = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OrderExpDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PickupPointId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     StatusId = table.Column<int>(type: "int", nullable: false)
                 },

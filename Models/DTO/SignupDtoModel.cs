@@ -1,6 +1,6 @@
 ﻿namespace Ozon.Model.DTO
 {
-    public class SignupModel
+    public class SignupDtoModel
     {
         public string UserName { get; set; } = string.Empty;
         public string UserSurname { get; set; } = string.Empty;

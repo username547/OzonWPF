@@ -1,5 +1,4 @@
-﻿using Ozon.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Ozon.View
+namespace Ozon.Views
 {
     /// <summary>
-    /// Логика взаимодействия для SignupWindow.xaml
+    /// Логика взаимодействия для LoginWindow.xaml
     /// </summary>
-    public partial class SignupWindow : Window
+    public partial class LoginWindow : Window
     {
-        public SignupWindow()
+        public LoginWindow()
         {
             InitializeComponent();
         }
