@@ -1,11 +1,9 @@
 ﻿using Ozon.Commands;
+using Ozon.DataManage;
 using Ozon.Model.DTO;
 using Ozon.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ozon.Views;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Ozon.ViewModels
@@ -13,12 +11,23 @@ namespace Ozon.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         private readonly LoginDtoModel _loginDtoModel;
+        public Window currentWindow;
         public ICommand LoginCommand { get; }
+        public ICommand NavigateToSignupWindowCommand { get; }
 
-        public LoginViewModel()
+        public LoginViewModel(Window currentWindow)
         {
             _loginDtoModel = new LoginDtoModel();
+            this.currentWindow = currentWindow;
             LoginCommand = new RelayCommand(parameter => Login());
+            NavigateToSignupWindowCommand = new RelayCommand(parameter => NavigateToSignupWindow());
+        }
+
+        public void NavigateToSignupWindow()
+        {
+            SignupWindow window = new SignupWindow();
+            window.Show();
+            currentWindow.Close();
         }
 
         public string UserEmail
@@ -43,7 +52,10 @@ namespace Ozon.ViewModels
 
         public void Login()
         {
-
+            if (ValidateLogin() && UserDataManager.ComparePassword(
+                _loginDtoModel.UserEmail,
+                _loginDtoModel.UserPassword)) MessageBox.Show("Hello");
+            else MessageBox.Show("Error!");
         }
 
         public bool ValidateLogin()

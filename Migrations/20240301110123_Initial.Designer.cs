@@ -12,8 +12,8 @@ using Ozon.Data;
 namespace Ozon.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240301043557_TestSizePassword")]
-    partial class TestSizePassword
+    [Migration("20240301110123_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -382,7 +382,8 @@ namespace Ozon.Migrations
 
                     b.Property<string>("UserPassword")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UserSurname")
                         .IsRequired()

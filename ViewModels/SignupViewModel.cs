@@ -1,8 +1,7 @@
 ﻿using Ozon.Commands;
 using Ozon.DataManage;
 using Ozon.Model.DTO;
-using Ozon.Navigations;
-using Ozon.View;
+using Ozon.Views;
 using System.Windows;
 using System.Windows.Input;
 
@@ -11,12 +10,23 @@ namespace Ozon.ViewModel
     public class SignupViewModel : ViewModelBase
     {
         private readonly SignupDtoModel _signupDtoModel;
+        public Window currentWindow;
         public ICommand SignupCommand { get; }
+        public ICommand NavigateToLoginWindowCommand { get; }
 
-        public SignupViewModel()
+        public SignupViewModel(Window currentWindow)
         {
             _signupDtoModel = new SignupDtoModel();
+            this.currentWindow = currentWindow;
             SignupCommand = new RelayCommand(parameter => Signup());
+            NavigateToLoginWindowCommand = new RelayCommand(parameter => NavigateToLoginWindow());
+        }
+
+        public void NavigateToLoginWindow()
+        {
+            LoginWindow window = new LoginWindow();
+            window.Show();
+            currentWindow.Close();
         }
 
         public string UserName
@@ -75,7 +85,7 @@ namespace Ozon.ViewModel
                 _signupDtoModel.UserName,
                 _signupDtoModel.UserSurname,
                 _signupDtoModel.UserEmail,
-                _signupDtoModel.UserPassword)) NavigationManager.NavigateTo(new MainWindow(), false);
+                _signupDtoModel.UserPassword)) NavigateToLoginWindow();
             else MessageBox.Show("Error!");
         }
 
