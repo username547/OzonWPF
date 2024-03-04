@@ -1,6 +1,7 @@
 ﻿using Ozon.Commands;
 using Ozon.DataManage;
 using Ozon.Model.DTO;
+using Ozon.View;
 using Ozon.ViewModel;
 using Ozon.Views;
 using System.Windows;
@@ -30,6 +31,13 @@ namespace Ozon.ViewModels
             currentWindow.Close();
         }
 
+        public void NavigateToAdminWindow()
+        {
+            AdminWindow window = new AdminWindow();
+            window.Show();
+            currentWindow.Close();
+        }
+
         public string UserEmail
         {
             get => _loginDtoModel.UserEmail;
@@ -52,10 +60,28 @@ namespace Ozon.ViewModels
 
         public void Login()
         {
-            if (ValidateLogin() && UserDataManager.ComparePassword(
+            if (!ValidateLogin() || !UserDataManager.ComparePassword(
                 _loginDtoModel.UserEmail,
-                _loginDtoModel.UserPassword)) MessageBox.Show("Hello");
-            else MessageBox.Show("Error!");
+                _loginDtoModel.UserPassword))
+            {
+                MessageBox.Show("Incorrect Login or Password");
+                return;
+            }
+            var user = UserDataManager.GetUserByEmail(UserEmail);
+            switch (UserDataManager.GetRoleName(user!.RoleId))
+            {
+                case "Admin":
+                    NavigateToAdminWindow();
+                    break;
+                case "Employee":
+                    break;
+                case "Seller":
+                    break;
+                case "User":
+                    break;
+                default:
+                    break;
+            }
         }
 
         public bool ValidateLogin()

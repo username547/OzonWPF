@@ -63,6 +63,14 @@ namespace Ozon.DataManage
             return true;
         }
 
+        public static UserModel? GetUserByEmail(string userEmail)
+        {
+            using ApplicationDbContext context = new();
+            var user = context.Users.FirstOrDefault(x => x.UserEmail == userEmail);
+            if (user == null) return null;
+            return user;
+        }
+
         public static int? GetRoleId(string roleName)
         {
             using ApplicationDbContext context = new();
