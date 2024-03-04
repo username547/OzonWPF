@@ -12,7 +12,7 @@ using Ozon.Data;
 namespace Ozon.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240301110123_Initial")]
+    [Migration("20240304004321_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
