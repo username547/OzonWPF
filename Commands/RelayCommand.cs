@@ -10,7 +10,10 @@ namespace Ozon.Commands
             _executeAction = executeAction;
         }
         public bool CanExecute(object? parameter) => true;
-        public void Execute(object? parameter) => _executeAction(parameter);
+        public void Execute(object? parameter)
+        {
+            _executeAction(parameter);
+        }
 
         public event EventHandler CanExecuteChanged
         {

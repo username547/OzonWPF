@@ -3,84 +3,319 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Ozon.View"
+        xmlns:local="clr-namespace:Ozon.View" xmlns:viewmodels="clr-namespace:Ozon.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AdminViewModel}"
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="720">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TabControl Grid.Row="0">
+        <TabControl Grid.Row="0" SelectedIndex="{Binding SelectedTabIndex}">
             <TabItem Name="UsersTabs">
                 <TabItem.Header>
                     <TextBlock Text="Users"/>
                 </TabItem.Header>
-                <ListView>
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="ID"/>
-                            <GridViewColumn Header="Name"/>
-                            <GridViewColumn Header="Surname"/>
-                            <GridViewColumn Header="Email"/>
-                            <GridViewColumn Header="Password"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-            <TabItem Name="SellersTabs">
-                <TabItem.Header>
-                    <TextBlock Text="Sellers"/>
-                </TabItem.Header>
-                <ListView>
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="ID"/>
-                            <GridViewColumn Header="Name"/>
-                            <GridViewColumn Header="Surname"/>
-                            <GridViewColumn Header="Email"/>
-                            <GridViewColumn Header="Password"/>
-                            <GridViewColumn Header="Passport"/>
-                            <GridViewColumn Header="INN"/>
-                            <GridViewColumn Header="Phone"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-            <TabItem Name="ShopsTabs">
-                <TabItem.Header>
-                    <TextBlock Text="Shops"/>
-                </TabItem.Header>
-                <ListView>
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="ID"/>
-                            <GridViewColumn Header="Name"/>
-                            <GridViewColumn Header="Description"/>
-                            <GridViewColumn Header="Rating"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllUsers}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding UserId}"/>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding UserName}"/>
+                                <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding UserSurname}"/>
+                                <GridViewColumn Header="Email" DisplayMemberBinding="{Binding UserEmail}"/>
+                                <GridViewColumn Header="Password" DisplayMemberBinding="{Binding UserPassword}"/>
+                                <GridViewColumn Header="RoleId" DisplayMemberBinding="{Binding RoleId}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Create" Width="100" Height="28"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </Grid>
             </TabItem>
             <TabItem Name="EmployeesTabs">
                 <TabItem.Header>
                     <TextBlock Text="Employees"/>
                 </TabItem.Header>
-                <ListView>
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="ID"/>
-                            <GridViewColumn Header="Name"/>
-                            <GridViewColumn Header="Surname"/>
-                            <GridViewColumn Header="Email"/>
-                            <GridViewColumn Header="Password"/>
-                            <GridViewColumn Header="Passport"/>
-                            <GridViewColumn Header="Phone"/>
-                            <GridViewColumn Header="Salary"/>
-                            <GridViewColumn Header="PickupPointID"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllEmployees}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id"/>
+                                <GridViewColumn Header="UserId"/>
+                                <GridViewColumn Header="Passport"/>
+                                <GridViewColumn Header="Phone"/>
+                                <GridViewColumn Header="Salary"/>
+                                <GridViewColumn Header="PickupPointId"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Create" Width="100" Height="28"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Name="SellersTabs">
+                <TabItem.Header>
+                    <TextBlock Text="Sellers"/>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllSellers}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding SellerId}"/>
+                                <GridViewColumn Header="UserId" DisplayMemberBinding="{Binding UserId}"/>
+                                <GridViewColumn Header="Passport" DisplayMemberBinding="{Binding SellerPassport}"/>
+                                <GridViewColumn Header="INN" DisplayMemberBinding="{Binding SellerINN}"/>
+                                <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding SellerPhone}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Create" Width="100" Height="28"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Name="RolesTabs">
+                <TabItem.Header>
+                    <TextBlock Text="Roles"/>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllRoles}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding RoleId}"/>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding RoleName}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Create" Width="100" Height="28"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Name="ShopsTabs">
+                <TabItem.Header>
+                    <TextBlock Text="Shops"/>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllShops}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding ShopId}"/>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding ShopName}"/>
+                                <GridViewColumn Header="Description" DisplayMemberBinding="{Binding ShopDescription}"/>
+                                <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding ShopRating}"/>
+                                <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding SellerId}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Create" Width="100" Height="28"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Name="ProductsTabs">
+                <TabItem.Header>
+                    <TextBlock Text="Products"/>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllProducts}" SelectedItem="{Binding SelectedProduct}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding ProductId}"/>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding ProductName}"/>
+                                <GridViewColumn Header="Description" DisplayMemberBinding="{Binding ProductDescription}"/>
+                                <GridViewColumn Header="Price" DisplayMemberBinding="{Binding ProductPrice}"/>
+                                <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding ProductRating}"/>
+                                <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding ProductQuantity}"/>
+                                <GridViewColumn Header="ShopId" DisplayMemberBinding="{Binding ShopId}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Create" Width="100" Height="28" Command="{Binding NavigateToCreateProductWindow}"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding NavigateToUpdateProductWindow}"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding DeleteProduct}"/>
+                        <Button Content="Refresh" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding RefreshProducts}"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Name="PickupPointsTabs">
+                <TabItem.Header>
+                    <TextBlock Text="PickupPoints"/>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllPickupPoints}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding PickupPointId}"/>
+                                <GridViewColumn Header="Address" DisplayMemberBinding="{Binding PickupPointAddress}"/>
+                                <GridViewColumn Header="Description" DisplayMemberBinding="{Binding PickupPointDescription}"/>
+                                <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding PickupPointRating}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Create" Width="100" Height="28"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0"/>
+                        <Button Content="Statistics" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding NavigateToStatisticsWindow}"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Name="CartsTabs">
+                <TabItem.Header>
+                    <TextBlock Text="Carts"/>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllCarts}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding CartId}"/>
+                                <GridViewColumn Header="UserId" DisplayMemberBinding="{Binding UserId}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Create" Width="100" Height="28"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Name="OrdersTabs">
+                <TabItem.Header>
+                    <TextBlock Text="Orders"/>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllOrders}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding OrderId}"/>
+                                <GridViewColumn Header="Price" DisplayMemberBinding="{Binding OrderPrice}"/>
+                                <GridViewColumn Header="PickupPointId" DisplayMemberBinding="{Binding PickupPointId}"/>
+                                <GridViewColumn Header="Date" DisplayMemberBinding="{Binding OrderDate}"/>
+                                <GridViewColumn Header="ExpDate" DisplayMemberBinding="{Binding OrderExpDate}"/>
+                                <GridViewColumn Header="UserId" DisplayMemberBinding="{Binding UserId}"/>
+                                <GridViewColumn Header="StatusId" DisplayMemberBinding="{Binding StatusId}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Create" Width="100" Height="28"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Name="StatusesTabs">
+                <TabItem.Header>
+                    <TextBlock Text="Statuses"/>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllStatuses}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding StatusId}"/>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding StatusName}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Create" Width="100" Height="28"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Name="IssuancesTabs">
+                <TabItem.Header>
+                    <TextBlock Text="Issuances"/>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllIssuances}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding IssuanceId}"/>
+                                <GridViewColumn Header="Date" DisplayMemberBinding="{Binding IssuanceDate}"/>
+                                <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding IssuanceRating}"/>
+                                <GridViewColumn Header="OrderId" DisplayMemberBinding="{Binding OrderId}"/>
+                                <GridViewColumn Header="EmployeeId" DisplayMemberBinding="{Binding EmployeeIdId}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Create" Width="100" Height="28"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

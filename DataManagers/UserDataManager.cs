@@ -67,7 +67,6 @@ namespace Ozon.DataManage
         {
             using ApplicationDbContext context = new();
             var user = context.Users.FirstOrDefault(x => x.UserEmail == userEmail);
-            if (user == null) return null;
             return user;
         }
 
