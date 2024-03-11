@@ -28,14 +28,14 @@ namespace Ozon.ViewModels
             _productId = productId;
             _productDtoModel = dto;
             UpdateCommand = new RelayCommand(parameter =>
-            {
-                ProductDataManager.UpdateProduct(_productId, dto);
-                currentWindow.Close();
-            });
-            CancelCommand = new RelayCommand(parameter =>
-            {
-                currentWindow.Close();
-            });
+                UpdateCommandExecute());
+            CancelCommand = new RelayCommand(parameter => currentWindow.Close());
+        }
+
+        private void UpdateCommandExecute()
+        {
+            ProductDataManager.UpdateProduct(_productId, _productDtoModel);
+            currentWindow.Close();
         }
 
         public string ProductName

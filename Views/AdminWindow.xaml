@@ -10,8 +10,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TabControl Grid.Row="0" SelectedIndex="{Binding SelectedTabIndex}">
-            <TabItem Name="UsersTabs">
+        <TabControl Grid.Row="0">
+            <TabItem Name="UsersTab">
                 <TabItem.Header>
                     <TextBlock Text="Users"/>
                 </TabItem.Header>
@@ -150,7 +150,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Name="ProductsTabs">
+            <TabItem Name="ProductsTab">
                 <TabItem.Header>
                     <TextBlock Text="Products"/>
                 </TabItem.Header>

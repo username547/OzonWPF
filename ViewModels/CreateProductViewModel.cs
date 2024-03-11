@@ -20,11 +20,14 @@ namespace Ozon.ViewModels
             _productDtoModel = new ProductDtoModel();
             this.currentWindow = currentWindow;
             CreateCommand = new RelayCommand(parameter =>
-            {
-                ProductDataManager.CreateProduct(_productDtoModel);
-                currentWindow.Close();
-            });
+                CreateCommandExecute());
             CancelCommand = new RelayCommand(parameter => currentWindow.Close());
+        }
+
+        private void CreateCommandExecute()
+        {
+            ProductDataManager.CreateProduct(_productDtoModel);
+            currentWindow.Close();
         }
 
         public string ProductName

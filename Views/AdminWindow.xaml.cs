@@ -24,6 +24,8 @@ namespace Ozon.View
         {
             InitializeComponent();
             DataContext = new AdminViewModel(this);
+            UsersTab.DataContext = new UserViewModel();
+            ProductsTab.DataContext = new ProductViewModel();
         }
     }
 }
