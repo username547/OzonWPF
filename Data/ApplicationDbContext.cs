@@ -10,13 +10,13 @@ namespace Ozon.Data
         public DbSet<EmployeeModel> Employees { get; set; }
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<ShopModel> Shops { get; set; }
-        public DbSet<PickupPointModel> PickPoints { get; set; }
+        public DbSet<PickupPointModel> PickupPoints { get; set; }
         public DbSet<RoleModel> Roles { get; set; }
         public DbSet<CartModel> Carts { get; set; }
         public DbSet<CartItemModel> CartItems { get; set; }
         public DbSet<OrderModel> Orders { get; set; }
         public DbSet<OrderItemModel> OrderItems { get; set; }
-        public DbSet<StatusModel> Status { get; set; }
+        public DbSet<StatusModel> Statuses { get; set; }
         public DbSet<IssuanceModel> Issuances { get; set; }
 
         public ApplicationDbContext()

@@ -12,7 +12,7 @@ namespace Ozon.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "PickPoints",
+                name: "PickupPoints",
                 columns: table => new
                 {
                     PickupPointId = table.Column<int>(type: "int", nullable: false)
@@ -23,7 +23,7 @@ namespace Ozon.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PickPoints", x => x.PickupPointId);
+                    table.PrimaryKey("PK_PickupPoints", x => x.PickupPointId);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,7 +56,7 @@ namespace Ozon.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Status",
+                name: "Statuses",
                 columns: table => new
                 {
                     StatusId = table.Column<int>(type: "int", nullable: false)
@@ -65,7 +65,7 @@ namespace Ozon.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Status", x => x.StatusId);
+                    table.PrimaryKey("PK_Statuses", x => x.StatusId);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,9 +84,9 @@ namespace Ozon.Migrations
                 {
                     table.PrimaryKey("PK_Employees", x => x.EmployeeId);
                     table.ForeignKey(
-                        name: "FK_Employees_PickPoints_PickupPointId",
+                        name: "FK_Employees_PickupPoints_PickupPointId",
                         column: x => x.PickupPointId,
-                        principalTable: "PickPoints",
+                        principalTable: "PickupPoints",
                         principalColumn: "PickupPointId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -172,9 +172,9 @@ namespace Ozon.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_Orders_Status_StatusId",
+                        name: "FK_Orders_Statuses_StatusId",
                         column: x => x.StatusId,
-                        principalTable: "Status",
+                        principalTable: "Statuses",
                         principalColumn: "StatusId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -385,10 +385,10 @@ namespace Ozon.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "PickPoints");
+                name: "PickupPoints");
 
             migrationBuilder.DropTable(
-                name: "Status");
+                name: "Statuses");
 
             migrationBuilder.DropTable(
                 name: "Users");

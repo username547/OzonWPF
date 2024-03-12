@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace Ozon.ViewModels
 {
-    public class ProductViewModel: ViewModelBase
+    public class ProductsViewModel: ViewModelBase
     {
         private ObservableCollection<ProductModel> _allProducts;
         private ProductModel? _selectedProduct = null;
@@ -19,7 +19,7 @@ namespace Ozon.ViewModels
         public ICommand DeleteProduct { get; }
         public ICommand RefreshProducts { get; }
 
-        public ProductViewModel()
+        public ProductsViewModel()
         {
             _allProducts = new ObservableCollection<ProductModel>(ProductDataManager.GetAllProducts());
             NavigateToCreateProductWindow = new RelayCommand(parameter =>

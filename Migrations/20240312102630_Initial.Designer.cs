@@ -12,7 +12,7 @@ using Ozon.Data;
 namespace Ozon.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240309103602_Initial")]
+    [Migration("20240312102630_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -221,7 +221,7 @@ namespace Ozon.Migrations
 
                     b.HasKey("PickupPointId");
 
-                    b.ToTable("PickPoints");
+                    b.ToTable("PickupPoints");
                 });
 
             modelBuilder.Entity("Ozon.Model.ProductModel", b =>
@@ -356,7 +356,7 @@ namespace Ozon.Migrations
 
                     b.HasKey("StatusId");
 
-                    b.ToTable("Status");
+                    b.ToTable("Statuses");
                 });
 
             modelBuilder.Entity("Ozon.Model.UserModel", b =>

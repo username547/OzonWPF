@@ -5,11 +5,11 @@ using System.Collections.ObjectModel;
 
 namespace Ozon.ViewModels
 {
-    public class UserViewModel : ViewModelBase
+    public class UsersViewModel : ViewModelBase
     {
         private ObservableCollection<UserModel> _allUsers;
 
-        public UserViewModel()
+        public UsersViewModel()
         {
             _allUsers = new ObservableCollection<UserModel>(UserDataManager.GetAllUsers());
         }
