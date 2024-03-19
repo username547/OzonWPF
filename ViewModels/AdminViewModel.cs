@@ -16,17 +16,10 @@ namespace Ozon.ViewModels
         private ObservableCollection<ShopModel> _allShops;
         public Window currentWindow;
 
-        public ICommand NavigateToStatisticsWindow { get; }
-
         public AdminViewModel(Window currentWindow)
         {
             this.currentWindow = currentWindow;
             _allShops = new ObservableCollection<ShopModel>(ShopDataManager.GetAllShops());
-            NavigateToStatisticsWindow = new RelayCommand(parameter =>
-            {
-                StatisticsWindow statisticsWindow = new StatisticsWindow();
-                statisticsWindow.Show();
-            });
         }
 
         public ObservableCollection<ShopModel> AllShops

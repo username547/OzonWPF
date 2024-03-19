@@ -9,32 +9,22 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="8"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TabControl>
-            <TabItem>
-                <TabItem.Header>
-                    <TextBlock Text="PickupPoints"/>
-                </TabItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="8"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                </Grid>
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <TextBlock Text="Employees"/>
-                </TabItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="8"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                </Grid>
-            </TabItem>
-        </TabControl>
+        <ListView ItemsSource="{Binding AllEmployeeStats}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="EmployeeId" DisplayMemberBinding="{Binding EmployeeId}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding UserName}"/>
+                    <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding UserSurname}"/>
+                    <GridViewColumn Header="IssuanceCount" DisplayMemberBinding="{Binding IssuanceCount}"/>
+                    <GridViewColumn Header="AverageRating" DisplayMemberBinding="{Binding AverageRating}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Back" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding CloseStats}"/>
+        </StackPanel>
     </Grid>
 </Window>

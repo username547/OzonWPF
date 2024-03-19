@@ -58,22 +58,16 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
                         <Label Content="Search:"/>
-                        <TextBox x:Name="txtEmail" Width="200" Text="{Binding SearchString, Mode=TwoWay}"/>
-                        <ComboBox SelectedIndex="0">
+                        <TextBox x:Name="txtSearchString" Width="200" Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox SelectedIndex="0" SelectedItem="{Binding SelectedSortOption, Mode=TwoWay}">
                             <ComboBoxItem>
-                                <TextBlock>Name</TextBlock>
+                                <TextBlock>No</TextBlock>
                             </ComboBoxItem>
                             <ComboBoxItem>
-                                <TextBlock>Price</TextBlock>
+                                <TextBlock>Name (A-Z)</TextBlock>
                             </ComboBoxItem>
                             <ComboBoxItem>
-                                <TextBlock>Rating</TextBlock>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <TextBlock>Quantity</TextBlock>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <TextBlock>Shop</TextBlock>
+                                <TextBlock>Name (Z-A)</TextBlock>
                             </ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
@@ -108,13 +102,15 @@
                         <RowDefinition Height="8" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding AllPickupPoints}">
+                    <ListView Grid.Row="0" ItemsSource="{Binding AllPickupPointStats}" SelectedItem="{Binding SelectedPickupPoint}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Id" DisplayMemberBinding="{Binding PickupPointId}"/>
                                 <GridViewColumn Header="Address" DisplayMemberBinding="{Binding PickupPointAddress}"/>
                                 <GridViewColumn Header="Description" DisplayMemberBinding="{Binding PickupPointDescription}"/>
-                                <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding PickupPointRating}"/>
+                                <GridViewColumn Header="EmployeeCount" DisplayMemberBinding="{Binding EmployeeCount}"/>
+                                <GridViewColumn Header="IssuanceCount" DisplayMemberBinding="{Binding IssuanceCount}"/>
+                                <GridViewColumn Header="AverageRating" DisplayMemberBinding="{Binding AverageRating}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

@@ -14,6 +14,8 @@ namespace Ozon.ViewModels
     {
         private ObservableCollection<ProductModel> _allProducts;
         private ProductModel? _selectedProduct = null;
+        private string _searchString = string.Empty;
+        public string SelectedSortOption { get; set; } = "Name";
         public ICommand NavigateToCreateProductWindow { get; }
         public ICommand NavigateToUpdateProductWindow { get; }
         public ICommand DeleteProduct { get; }
@@ -64,11 +66,25 @@ namespace Ozon.ViewModels
             else MessageBox.Show("Please select a product to update.");
         }
 
-        private void RefreshProductsExecute()
+        /*private void RefreshProductsExecute()
         {
             AllProducts.Clear();
             var updatedProducts = ProductDataManager.GetAllProducts();
             foreach (var product in updatedProducts) AllProducts.Add(product);
+        }*/
+
+        private void RefreshProductsExecute()
+        {
+            AllProducts.Clear();
+            var allProducts = ProductDataManager.GetAllProducts();
+            foreach (var product in allProducts)
+            {
+                if (string.IsNullOrWhiteSpace(_searchString) ||
+                    product.ProductName.Contains(_searchString))
+                {
+                    AllProducts.Add(product);
+                }
+            }
         }
 
         public ObservableCollection<ProductModel> AllProducts
@@ -83,11 +99,22 @@ namespace Ozon.ViewModels
 
         public ProductModel SelectedProduct
         {
-            get { return _selectedProduct; }
+            get { return _selectedProduct!; }
             set
             {
                 _selectedProduct = value;
                 OnPropertyChanged(nameof(SelectedProduct));
+            }
+        }
+
+        public string SearchString
+        {
+            get { return _searchString; }
+            set
+            {
+                _searchString = value;
+                RefreshProductsExecute(); // При изменении строки поиска обновляем список продуктов
+                OnPropertyChanged(nameof(SearchString));
             }
         }
     }
