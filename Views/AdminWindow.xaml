@@ -59,16 +59,14 @@
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
                         <Label Content="Search:"/>
                         <TextBox x:Name="txtSearchString" Width="200" Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <ComboBox SelectedIndex="0" SelectedItem="{Binding SelectedSortOption, Mode=TwoWay}">
-                            <ComboBoxItem>
-                                <TextBlock>No</TextBlock>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <TextBlock>Name (A-Z)</TextBlock>
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                <TextBlock>Name (Z-A)</TextBlock>
-                            </ComboBoxItem>
+                        <ComboBox SelectedItem="{Binding SelectedSortOption, Mode=TwoWay}">
+                            <ComboBox.ItemsSource>
+                                <x:Array Type="{x:Type viewmodels:SortOption}">
+                                    <viewmodels:SortOption>None</viewmodels:SortOption>
+                                    <viewmodels:SortOption>NameAscending</viewmodels:SortOption>
+                                    <viewmodels:SortOption>NameDescending</viewmodels:SortOption>
+                                </x:Array>
+                            </ComboBox.ItemsSource>
                         </ComboBox>
                     </StackPanel>
                     <ListView Grid.Row="2" ItemsSource="{Binding AllProducts}" SelectedItem="{Binding SelectedProduct}" Grid.ColumnSpan="2">
@@ -88,7 +86,6 @@
                         <Button Content="Create" Width="100" Height="28" Command="{Binding NavigateToCreateProductWindow}"/>
                         <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding NavigateToUpdateProductWindow}"/>
                         <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding DeleteProduct}"/>
-                        <Button Content="Refresh" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding RefreshProducts}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

@@ -10,16 +10,23 @@ using System.Windows.Input;
 
 namespace Ozon.ViewModels
 {
+    public enum SortOption
+    {
+        None,
+        NameAscending,
+        NameDescending
+    }
+
     public class ProductsViewModel: ViewModelBase
     {
         private ObservableCollection<ProductModel> _allProducts;
         private ProductModel? _selectedProduct = null;
         private string _searchString = string.Empty;
-        public string SelectedSortOption { get; set; } = "Name";
+        private SortOption _selectedSortOption = SortOption.None;
+
         public ICommand NavigateToCreateProductWindow { get; }
         public ICommand NavigateToUpdateProductWindow { get; }
         public ICommand DeleteProduct { get; }
-        public ICommand RefreshProducts { get; }
 
         public ProductsViewModel()
         {
@@ -30,8 +37,6 @@ namespace Ozon.ViewModels
                 NavigateToUpdateProductWindowExecute());
             DeleteProduct = new RelayCommand(parameter =>
                 DeleteProductExecute());
-            RefreshProducts = new RelayCommand(parameter =>
-                RefreshProductsExecute());
         }
 
         private void NavigateToCreateProductWindowExecute()
@@ -66,25 +71,26 @@ namespace Ozon.ViewModels
             else MessageBox.Show("Please select a product to update.");
         }
 
-        /*private void RefreshProductsExecute()
+        private void RefreshProducts()
         {
             AllProducts.Clear();
-            var updatedProducts = ProductDataManager.GetAllProducts();
-            foreach (var product in updatedProducts) AllProducts.Add(product);
-        }*/
 
-        private void RefreshProductsExecute()
-        {
-            AllProducts.Clear();
             var allProducts = ProductDataManager.GetAllProducts();
-            foreach (var product in allProducts)
+            var filteredProducts = allProducts.Where(p => string.IsNullOrWhiteSpace(_searchString) || p.ProductName.ToLower().Contains(_searchString.ToLower()));
+
+            switch (SelectedSortOption)
             {
-                if (string.IsNullOrWhiteSpace(_searchString) ||
-                    product.ProductName.Contains(_searchString))
-                {
-                    AllProducts.Add(product);
-                }
+                case SortOption.None:
+                    break;
+                case SortOption.NameAscending:
+                    filteredProducts = filteredProducts.OrderBy(p => p.ProductName);
+                    break;
+                case SortOption.NameDescending:
+                    filteredProducts = filteredProducts.OrderByDescending(p => p.ProductName);
+                    break;
             }
+
+            foreach (var product in filteredProducts) _allProducts.Add(product);
         }
 
         public ObservableCollection<ProductModel> AllProducts
@@ -113,8 +119,21 @@ namespace Ozon.ViewModels
             set
             {
                 _searchString = value;
-                RefreshProductsExecute(); // При изменении строки поиска обновляем список продуктов
+                RefreshProducts();
                 OnPropertyChanged(nameof(SearchString));
+            }
+        }
+
+        public SortOption SelectedSortOption
+        {
+            get => _selectedSortOption;
+            set
+            {
+                if (_selectedSortOption != value)
+                {
+                    _selectedSortOption = value;
+                    RefreshProducts();
+                }
             }
         }
     }
