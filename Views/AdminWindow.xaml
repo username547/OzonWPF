@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Ozon.View" xmlns:viewmodels="clr-namespace:Ozon.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AdminViewModel}"
+        xmlns:local="clr-namespace:Ozon.View" xmlns:viewmodels="clr-namespace:Ozon.ViewModels"
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="720">
     <Grid>
@@ -11,11 +11,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TabControl Grid.Row="0">
-            <TabItem Name="UsersTab">
+            <TabItem Name="UsersTab" Visibility="{Binding UsersTabVisibility}">
                 <TabItem.Header>
                     <TextBlock Text="Users"/>
                 </TabItem.Header>
-                <ListView Grid.Row="0" ItemsSource="{Binding AllUsers}">
+                <ListView Grid.Row="0" ItemsSource="{Binding AllUsers}" Visibility="{Binding UsersTabVisibility}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Id" DisplayMemberBinding="{Binding UserId}"/>
@@ -28,11 +28,11 @@
                     </ListView.View>
                 </ListView>
             </TabItem>
-            <TabItem Name="ShopsTabs">
+            <TabItem Name="ShopsTab" Visibility="{Binding ShopsTabVisibility}">
                 <TabItem.Header>
                     <TextBlock Text="Shops"/>
                 </TabItem.Header>
-                <ListView Grid.Row="0" ItemsSource="{Binding AllShops}">
+                <ListView Grid.Row="0" ItemsSource="{Binding AllShops}" Visibility="{Binding ShopsTabVisibility}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Id" DisplayMemberBinding="{Binding ShopId}"/>
@@ -44,11 +44,11 @@
                     </ListView.View>
                 </ListView>
             </TabItem>
-            <TabItem Name="ProductsTab">
+            <TabItem Name="ProductsTab" Visibility="{Binding ProductsTabVisibility}">
                 <TabItem.Header>
                     <TextBlock Text="Products"/>
                 </TabItem.Header>
-                <Grid>
+                <Grid Visibility="{Binding ProductsTabVisibility}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="8" />
@@ -82,18 +82,18 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="Create" Width="100" Height="28" Command="{Binding NavigateToCreateProductWindow}"/>
-                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding NavigateToUpdateProductWindow}"/>
-                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding DeleteProduct}"/>
+                    <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding ProductControlButtonsVisibility}">
+                        <Button Content="Create" Width="100" Height="28" Command="{Binding NavigateToCreateProductWindow}" Visibility="{Binding ProductCreateButtonVisibility}"/>
+                        <Button Content="Update" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding NavigateToUpdateProductWindow}" Visibility="{Binding ProductUpdateButtonVisibility}"/>
+                        <Button Content="Delete" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding DeleteProduct}" Visibility="{Binding ProductDeleteButtonVisibility}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Name="PickupPointsTab">
+            <TabItem Name="PickupPointsTab" Visibility="{Binding PickupPointsTabVisibility}">
                 <TabItem.Header>
                     <TextBlock Text="PickupPoints"/>
                 </TabItem.Header>
-                <Grid>
+                <Grid Visibility="{Binding PickupPointsTabVisibility}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="8" />
@@ -111,10 +111,18 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding PickupPointControlButtonsVisibility}">
                         <Button Content="Statistics" Width="100" Height="28" Margin="20,0,0,0" Command="{Binding NavigateToStatisticsWindow}"/>
                     </StackPanel>
                 </Grid>
+            </TabItem>
+            <TabItem Name="AccountTab">
+                <TabItem.Header>
+                    <TextBlock Text="Account"/>
+                </TabItem.Header>
+                <StackPanel>
+                    <Button Content="Logout" Width="60" Height="24" Command="{Binding Logout}"/>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>

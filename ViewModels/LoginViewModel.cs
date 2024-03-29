@@ -1,6 +1,7 @@
 ﻿using Ozon.Commands;
 using Ozon.DataManage;
 using Ozon.Model.DTO;
+using Ozon.Patterns;
 using Ozon.View;
 using Ozon.ViewModel;
 using Ozon.Views;
@@ -67,21 +68,26 @@ namespace Ozon.ViewModels
                 MessageBox.Show("Incorrect Login or Password");
                 return;
             }
+
             var user = UserDataManager.GetUserByEmail(UserEmail);
-            switch (UserDataManager.GetRoleName(user!.RoleId))
+            if (user == null)
             {
-                case "Admin":
-                    NavigateToAdminWindow();
-                    break;
-                case "Employee":
-                    break;
-                case "Seller":
-                    break;
-                case "User":
-                    break;
-                default:
-                    break;
+                MessageBox.Show("Incorrect Email");
+                return;
             }
+
+            string? role = UserDataManager.GetRoleName(user.RoleId);
+            if (role == null)
+            {
+                MessageBox.Show("Incorrect User");
+                return;
+            }
+
+            Singleton.Instance.Id = user.UserId;
+            Singleton.Instance.Email = user.UserEmail;
+            Singleton.Instance.Role = role!;
+
+            NavigateToAdminWindow();
         }
 
         public bool ValidateLogin()

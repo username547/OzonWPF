@@ -49,8 +49,8 @@
             <StackPanel
                 Orientation="Horizontal"
                 HorizontalAlignment="Center">
-                <Button Content="Create" Width="68" Height="24" Margin="0,0,5,0"/>
-                <Button Content="Cancel" Width="68" Height="24"/>
+                <Button Content="Create" Width="68" Height="24" Margin="0,0,5,0" Command="{Binding CreateCommand}"/>
+                <Button Content="Cancel" Width="68" Height="24" Command="{Binding CancelCommand}"/>
             </StackPanel>
         </Border>
     </Grid>

@@ -8,6 +8,10 @@ namespace Ozon.DataManagers
 {
     public class ProductDataManager
     {
+        public static event EventHandler ProductCreated;
+        public static event EventHandler ProductUpdated;
+        public static event EventHandler ProductDeleted;
+
         public static List<ProductModel> GetAllProducts()
         {
             using ApplicationDbContext context = new();
@@ -29,6 +33,7 @@ namespace Ozon.DataManagers
 
             context.Products.Add(newProduct);
             context.SaveChanges();
+            OnProductCreated();
         }
 
         public static bool UpdateProduct(int productId, ProductDtoModel dto)
@@ -46,6 +51,7 @@ namespace Ozon.DataManagers
             product.ShopId = dto.ShopId;
 
             context.SaveChanges();
+            OnProductUpdated();
 
             return true;
         }
@@ -58,8 +64,18 @@ namespace Ozon.DataManagers
 
             context.Products.Remove(product);
             context.SaveChanges();
+            OnProductDeleted();
 
             return true;
         }
+
+        private static void OnProductCreated() =>
+            ProductCreated?.Invoke(null, EventArgs.Empty);
+
+        private static void OnProductUpdated() =>
+            ProductUpdated?.Invoke(null, EventArgs.Empty);
+
+        private static void OnProductDeleted() =>
+            ProductDeleted?.Invoke(null, EventArgs.Empty);
     }
 }

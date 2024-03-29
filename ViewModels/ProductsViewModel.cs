@@ -2,6 +2,7 @@
 using Ozon.DataManagers;
 using Ozon.Model;
 using Ozon.Models.DTO;
+using Ozon.Patterns;
 using Ozon.ViewModel;
 using Ozon.Views;
 using System.Collections.ObjectModel;
@@ -28,6 +29,12 @@ namespace Ozon.ViewModels
         public ICommand NavigateToUpdateProductWindow { get; }
         public ICommand DeleteProduct { get; }
 
+        private Visibility _productsTabVisibility = Visibility.Visible;
+        private Visibility _productControlButtonsVisibility = Visibility.Visible;
+        private Visibility _productCreateButtonVisibility = Visibility.Visible;
+        private Visibility _productUpdateButtonVisibility = Visibility.Visible;
+        private Visibility _productDeleteButtonVisibility = Visibility.Visible;
+
         public ProductsViewModel()
         {
             _allProducts = new ObservableCollection<ProductModel>(ProductDataManager.GetAllProducts());
@@ -37,6 +44,29 @@ namespace Ozon.ViewModels
                 NavigateToUpdateProductWindowExecute());
             DeleteProduct = new RelayCommand(parameter =>
                 DeleteProductExecute());
+
+            switch (Singleton.Instance.Role)
+            {
+                case "Admin":
+                    break;
+                case "Employee":
+                    _productCreateButtonVisibility = Visibility.Collapsed;
+                    _productDeleteButtonVisibility= Visibility.Collapsed;
+                    break;
+                case "Seller":
+                    break;
+                case "User":
+                    _productControlButtonsVisibility = Visibility.Collapsed;
+                    break;
+                default:
+                    _productsTabVisibility = Visibility.Collapsed;
+                    _productControlButtonsVisibility = Visibility.Collapsed;
+                    break;
+            }
+
+            ProductDataManager.ProductCreated += (sender, e) => RefreshProducts();
+            ProductDataManager.ProductUpdated += (sender, e) => RefreshProducts();
+            ProductDataManager.ProductDeleted += (sender, e) => RefreshProducts();
         }
 
         private void NavigateToCreateProductWindowExecute()
@@ -71,7 +101,7 @@ namespace Ozon.ViewModels
             else MessageBox.Show("Please select a product to update.");
         }
 
-        private void RefreshProducts()
+        public void RefreshProducts()
         {
             AllProducts.Clear();
 
@@ -134,6 +164,56 @@ namespace Ozon.ViewModels
                     _selectedSortOption = value;
                     RefreshProducts();
                 }
+            }
+        }
+
+        public Visibility ProductsTabVisibility
+        {
+            get { return _productsTabVisibility; }
+            set
+            {
+                _productsTabVisibility = value;
+                OnPropertyChanged(nameof(ProductsTabVisibility));
+            }
+        }
+
+        public Visibility ProductControlButtonsVisibility
+        {
+            get { return _productControlButtonsVisibility; }
+            set
+            {
+                _productControlButtonsVisibility = value;
+                OnPropertyChanged(nameof(ProductControlButtonsVisibility));
+            }
+        }
+
+        public Visibility ProductCreateButtonVisibility
+        {
+            get { return _productCreateButtonVisibility; }
+            set
+            {
+                _productCreateButtonVisibility = value;
+                OnPropertyChanged(nameof(ProductCreateButtonVisibility));
+            }
+        }
+
+        public Visibility ProductUpdateButtonVisibility
+        {
+            get { return _productUpdateButtonVisibility; }
+            set
+            {
+                _productUpdateButtonVisibility = value;
+                OnPropertyChanged(nameof(ProductUpdateButtonVisibility));
+            }
+        }
+
+        public Visibility ProductDeleteButtonVisibility
+        {
+            get { return _productDeleteButtonVisibility; }
+            set
+            {
+                _productDeleteButtonVisibility = value;
+                OnPropertyChanged(nameof(ProductDeleteButtonVisibility));
             }
         }
     }

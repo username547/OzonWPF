@@ -20,27 +20,5 @@ namespace Ozon.Commands
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
-        /*private readonly Action<object?> executeAction;
-        private readonly Func<object?, bool> canExecute;
-
-        public RelayCommand(Action<object?> executeActionParameter, Func<object?, bool>? canExecuteParameter = null)
-        {
-            executeAction = executeActionParameter ?? throw new ArgumentNullException(nameof(executeActionParameter));
-            canExecute = canExecuteParameter ?? (parameter => true);
-        }
-
-        public bool CanExecute(object? parameter) => canExecute(parameter);
-
-        public void Execute(object? parameter)
-        {
-            if (CanExecute(parameter))
-                executeAction(parameter);
-        }
-
-        public event EventHandler? CanExecuteChanged
-        {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
-        }*/
     }
 }
